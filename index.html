@@ -915,6 +915,11 @@ body.closing-back-cover .stage::after {
   position: relative;
   overflow: hidden;
 }
+.back-cover-imprint {
+  position: absolute; right: 26px; bottom: 24px; z-index: 4;
+  font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: oklch(0.72 0.09 80 / 0.85);
+}
 .back-cover-art {
   width: 100%;
   height: 100%;
@@ -966,11 +971,17 @@ body.closing-back-cover .stage::after {
 }
 .bc-headline {
   font-family: var(--f-brand); font-weight: 400;
-  font-size: 52px; line-height: 0.92; color: var(--ink);
+  font-size: 58px; line-height: 0.92; color: var(--ink);
   letter-spacing: -0.025em; text-wrap: balance;
 }
 .bc-headline .accent { color: var(--accent); }
-.bc-sub { font-family: var(--f-body); font-size: 12.6px; line-height: 1.45; color: var(--ink-2); max-width: 420px; margin-top: 0; }
+.bc-sub { font-family: var(--f-body); font-size: 12.6px; line-height: 1.5; color: var(--ink-2); max-width: 420px; margin-top: 4px; }
+.bc-send { display: flex; flex-wrap: wrap; gap: 7px; margin: 12px 0 6px; }
+.bc-send span {
+  font-family: var(--f-mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--ink-2); border: 1px solid var(--rule); border-radius: 999px; padding: 5px 11px;
+  background: oklch(0.96 0.018 82 / 0.55);
+}
 .bc-sub em { font-family: var(--f-italic); font-style: italic; color: var(--accent); }
 .bc-playbook {
   margin-top: 10px;
@@ -1049,7 +1060,7 @@ body.closing-back-cover .stage::after {
 }
 .bc-cta-sub { font-family: var(--f-mono); font-size: 9px; color: var(--muted); letter-spacing: 0.12em; margin-top: 0; }
 .bc-cta-sub em { color: var(--accent); font-style: italic; font-family: var(--f-italic); }
-.bc-sig { margin-top: 4px; display: flex; align-items: center; gap: 12px; }
+.bc-sig { margin-top: 14px; display: flex; align-items: center; gap: 12px; }
 .bc-sig svg { display: block; }
 .bc-sig .meta { font-family: var(--f-italic); font-style: italic; font-size: 12px; color: var(--muted); }
 .sig-path { stroke-dasharray: 320; stroke-dashoffset: 320; animation: sigDraw 2.4s ease-out 0.5s forwards; }
@@ -3101,12 +3112,12 @@ img.event-mark {
           <div class="tape"></div>
           <div class="photo photo-real photo-news-reader"><img loading="lazy" decoding="async" src="assets/new-startup-media.webp" alt="New startup media"></div>
           <div class="caption">
-            New startup media
+            Print died. Distribution didn&rsquo;t.
           </div>
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Menu</span>02</div>
+        <div class="marker"><span class="sec">Manifesto</span>02</div>
         <div class="menu-eye">What we do</div>
         <h2 class="menu-headline">We don't announce startups.<br>We make them <em>unavoidable.</em></h2>
         <p class="menu-intro" style="display:none">A working list of the formats we ship from. Pick one, pick three, or hand us the brief and we'll pick the right cut.</p>
@@ -3293,7 +3304,7 @@ img.event-mark {
           <div class="case-name">Zaranna AI <span class="role">· founder, Tarun Vedula</span></div>
         </div>
         <h2 class="case-title">One post. <em>Thirty calls.</em> <em>$300K</em> in pipeline.</h2>
-        <p class="story">Tarun was building Zaranna AI in stealth-quiet &middot; a YC company with a clear thesis and no megaphone. Vesting ran one post on Instagram. Within days the inbox didn&rsquo;t ease up. <strong>30+ inbound calls</strong> came in, each one expanding a different use case the team hadn&rsquo;t even pitched yet. The pipeline closed at roughly <strong>$300K of ARR working</strong> &middot; <em>from a single post.</em></p>
+        <p class="story">Tarun was building Zaranna AI in stealth-quiet &mdash; a YC company with a clear thesis and no megaphone. Vesting ran one post on Instagram. Within days the inbox didn&rsquo;t ease up. <strong>30+ inbound calls</strong> came in, each one expanding a different use case the team hadn&rsquo;t even pitched yet. The pipeline closed at roughly <strong>$300K of ARR working</strong> &mdash; <em>from a single post.</em></p>
         <div class="zaranna-proof-asset">
           <img loading="lazy" decoding="async" src="assets/zaranna-ai-proof-vesting-live-clip-leading-to-tarun-vedula-s.webp" alt="Zaranna AI proof: Vesting Live clip leading to Tarun Vedula's 30+ inbound calls and $300K ARR pipeline message">
         </div>
@@ -3343,8 +3354,8 @@ img.event-mark {
           <div class="case-type">Viral Launch &middot; YC Accept</div>
           <div class="case-name">ProjectX <span class="role">&middot; founder, Rounak Adhikary</span></div>
         </div>
-        <h2 class="case-title">A pitch that reached <em>3.6 million</em> &middot; and crashed the servers at 1&thinsp;AM.</h2>
-        <p class="story">Rounak didn&rsquo;t file a press release. He pitched ProjectX on Vesting&rsquo;s Instagram &middot; <strong>content engineered to move, not to inform.</strong> The post hit <strong>3,612,440 views</strong>, 240K likes, 60K shares, and accumulated roughly three years of combined watch time. Signups overwhelmed the stack. Weeks later, <em>accepted into Y Combinator</em> &middot; social proof money can&rsquo;t buy.</p>
+        <h2 class="case-title">A pitch that reached <em>3.6 million</em> &mdash; and crashed the servers at 1&thinsp;AM.</h2>
+        <p class="story">Rounak didn&rsquo;t file a press release. He pitched ProjectX on Vesting&rsquo;s Instagram &mdash; <strong>content engineered to move, not to inform.</strong> The post hit <strong>3,612,440 views</strong>, 240K likes, 60K shares, and accumulated roughly three years of combined watch time. Signups overwhelmed the stack. Weeks later, <em>accepted into Y Combinator</em> &mdash; social proof money can&rsquo;t buy.</p>
         <div class="case-post case-post-triangle px-story">
           <img class="px-composite" src="assets/projectxxxpage.webp" alt="ProjectX proof sequence: launch clip, servers down tweet, and YC accept">
           <div class="px-clip">
@@ -3393,7 +3404,7 @@ img.event-mark {
           <div class="case-name">Lance <span class="role">&middot; founders, Caleb Chan, Gatik Trivedi &amp; Gavin Brennen</span></div>
         </div>
         <h2 class="case-title">A <em>$3.7M raise</em> became an inbound engine overnight.</h2>
-        <p class="story">Lance builds AI agents for hotel ops. The raise needed to <strong>generate inbound</strong>, not just inform. Vesting built the announcement for the algorithm &middot; bold visuals, one hook, engineered for distribution. In the first day: <strong>186,585 views</strong>, 2,363 profile visits. A post that behaved like a <em>channel.</em></p>
+        <p class="story">Lance builds AI agents for hotel ops. The raise needed to <strong>generate inbound</strong>, not just inform. Vesting built the announcement for the algorithm &mdash; bold visuals, one hook, engineered for distribution. In the first day: <strong>186,585 views</strong>, 2,363 profile visits. A post that behaved like a <em>channel.</em></p>
         <div class="case-post">
           <div class="case-post-frame">
             <img loading="lazy" decoding="async" src="assets/lance-yc-announcement-post.webp" alt="Lance YC announcement post">
@@ -3423,8 +3434,8 @@ img.event-mark {
           <div class="case-type">Stealth &middot; backed by Alexis Ohanian</div>
           <div class="case-name">Veritas <span class="role">&middot; founder, Luci Holland</span></div>
         </div>
-        <h2 class="case-title">From stealth to <em>234K views</em> &middot; microchips in Birkins.</h2>
-        <p class="story">Veritas was secretly embedding <strong>microchips inside Birkin bags</strong> for authentication. Zero public presence before Vesting. We broke the story, the hook did the rest: <strong>234,165 views</strong> in 24 hours, 1.5K likes, 755 shares. For a startup nobody knew existed &middot; <em>a full-blown debut.</em></p>
+        <h2 class="case-title">From stealth to <em>234K views</em> &mdash; microchips in Birkins.</h2>
+        <p class="story">Veritas was secretly embedding <strong>microchips inside Birkin bags</strong> for authentication. Zero public presence before Vesting. We broke the story, the hook did the rest: <strong>234,165 views</strong> in 24 hours, 1.5K likes, 755 shares. For a startup nobody knew existed &mdash; <em>a full-blown debut.</em></p>
         <div class="case-post">
           <div class="case-post-frame">
             <img loading="lazy" decoding="async" src="assets/veritas-birkin-microchips-post.webp" alt="Veritas Birkin microchips post">
@@ -3454,7 +3465,7 @@ img.event-mark {
           <div class="case-type">Live Pitch &middot; YC P26</div>
           <div class="case-name">Zolvo <span class="role">&middot; founders, Isabela Rodriguez &amp; Tony Montes</span></div>
         </div>
-        <h2 class="case-title">She pitched live. <em>Three weeks later</em> &middot; YC.</h2>
+        <h2 class="case-title">She pitched live. <em>Three weeks later</em> &mdash; YC.</h2>
         <p class="story">Isa was building AI agents for commercial lenders. She pitched at <strong>Vesting Live, Founders Inc Demo Day.</strong> Moved to SF, <strong>slept on couches</strong>, kept building. Brycent wrote an <strong>angel check on the spot</strong>. The clip pulled <strong>80,000+ views</strong>. Twenty-seven days later: <em>&ldquo;WE GOT ACCEPTED TO YC P26.&rdquo;</em></p>
         <div class="zolvo-composite-proof">
           <img loading="lazy" decoding="async" src="assets/zolvo-journey-pitched-live-angel-cheque-yc-accept.webp" alt="Zolvo journey: Pitched live → Angel cheque → YC accept">
@@ -3481,8 +3492,8 @@ img.event-mark {
           <div class="case-type">Stealth debut &middot; YC accept</div>
           <div class="case-name">Enjamb Labs <span class="role">&middot; founders, Rayan Mubarak &amp; Maadhav Deekshitha</span></div>
         </div>
-        <h2 class="case-title">Stealth start to <em>161K views</em> &middot; and into <em>YC.</em></h2>
-        <p class="story">Rayan was building Enjamb Labs in stealth &middot; no audience, no launch post, no footprint. Vesting filmed the debut and shipped it. The post compounded: <strong>161,000+ views</strong>, deep engagement from the technical community, and inbound from the exact people Enjamb wanted to reach. Weeks later: <em>accepted into Y Combinator.</em></p>
+        <h2 class="case-title">Stealth start to <em>161K views</em> &mdash; and into <em>YC.</em></h2>
+        <p class="story">Rayan was building Enjamb Labs in stealth &mdash; no audience, no launch post, no footprint. Vesting filmed the debut and shipped it. The post compounded: <strong>161,000+ views</strong>, deep engagement from the technical community, and inbound from the exact people Enjamb wanted to reach. Weeks later: <em>accepted into Y Combinator.</em></p>
         <div class="enjamb-composite-proof">
           <img loading="lazy" decoding="async" src="assets/enjamb-journey-stealth-debut-applied-to-yc-accepted.webp" alt="Enjamb journey: Stealth debut → Applied to YC → Accepted">
         </div>
@@ -3508,7 +3519,7 @@ img.event-mark {
           <div class="case-type">Education &middot; $150K/yr high school</div>
           <div class="case-name">Founders School <span class="role">&middot; Head of Founder Development, Nat Eliason</span></div>
         </div>
-        <h2 class="case-title">A <em>$150K high school</em> that refunds tuition &middot; <em>~1M views.</em></h2>
+        <h2 class="case-title">A <em>$150K high school</em> that refunds tuition &mdash; <em>~1M views.</em></h2>
         <p class="story">Founders School charges <strong>$150,000 a year</strong>. If students don&rsquo;t make $1 million in gross profit by graduation, they get every dollar back. Backed by billionaire <strong>Joe Liemandt</strong>, run by <strong>Nat Eliason</strong>. Vesting turned the concept into a carousel engineered for shock value. The hook landed: <strong>~1M views</strong>, 21K likes, 48K sends.</p>
         <div class="case-post">
           <div class="case-post-frame">
@@ -3615,8 +3626,8 @@ img.event-mark {
           <div class="case-type">YC Demo Day &middot; &times;2 &middot; with Garry Tan</div>
           <div class="case-name">Y Combinator <span class="role">&middot; Winter &amp; Spring 2026</span></div>
         </div>
-        <h2 class="case-title">The startup world&rsquo;s biggest stage &middot; <em>amplified.</em></h2>
-        <p class="story"><strong>24 clips</strong> across two YC Demo Days featuring founders, startups, and <strong>YC President Garry Tan</strong>. Content engineered for distribution: the moments that don&rsquo;t make it into the livestream, the quotes founders don&rsquo;t yet know are theirs, the reactions that travel. The clips racked up <strong>1.56M views</strong> &middot; <em>a new lane for YC visibility.</em></p>
+        <h2 class="case-title">The startup world&rsquo;s biggest stage &mdash; <em>amplified.</em></h2>
+        <p class="story"><strong>24 clips</strong> across two YC Demo Days featuring founders, startups, and <strong>YC President Garry Tan</strong>. Content engineered for distribution: the moments that don&rsquo;t make it into the livestream, the quotes founders don&rsquo;t yet know are theirs, the reactions that travel. The clips racked up <strong>1.56M views</strong> &mdash; <em>a new lane for YC visibility.</em></p>
         <div class="clothesline-wall clip-wall-yc">
           <div class="clip-wall-note">Tap clips to open reels</div>
           <div class="clothesline">
@@ -3682,8 +3693,8 @@ img.event-mark {
           <div class="case-type">Founders Inc &middot; &times;2 &middot; SF flagship</div>
         <div class="case-name">Founders Inc Demo Day <span class="role">&middot; where the format started</span></div>
       </div>
-      <h2 class="case-title">SF&rsquo;s most electric startup event &middot; <em>on camera.</em></h2>
-      <p class="story"><strong>28 clips</strong> across two Founders Inc events: pitches, demos, <strong>Vesting Live sessions</strong>, and the moments in between. The Founders Inc partnership is where our format started &middot; a vertical integration of coverage, curation, and deal flow that produced <strong>7.26M views</strong>, <em>the bulk of our quarterly reach.</em></p>
+      <h2 class="case-title">SF&rsquo;s most electric startup event &mdash; <em>on camera.</em></h2>
+      <p class="story"><strong>28 clips</strong> across two Founders Inc events: pitches, demos, <strong>Vesting Live sessions</strong>, and the moments in between. The Founders Inc partnership is where our format started &mdash; a vertical integration of coverage, curation, and deal flow that produced <strong>7.26M views</strong>, <em>the bulk of our quarterly reach.</em></p>
       <div class="clothesline-wall clip-wall-founders">
         <div class="clip-wall-note">Tap clips to open reels</div>
         <div class="clothesline">
@@ -3754,7 +3765,7 @@ img.event-mark {
       <div class="case-name">The Residency <span class="role">&middot; smaller room, outsized reach</span></div>
     </div>
     <h2 class="case-title">Emerging founders, <em>outsized reach.</em></h2>
-    <p class="story"><strong>6 clips</strong> from The Residency&rsquo;s demo day &middot; an intimate event with a fraction of the footprint, but <strong>310K views</strong>. <em>Proof that reach is a function of storytelling, not stage size.</em> The Residency cohort got SF-investor attention without the SF-investor crowd in the room.</p>
+    <p class="story"><strong>6 clips</strong> from The Residency&rsquo;s demo day &mdash; an intimate event with a fraction of the footprint, but <strong>310K views</strong>. <em>Proof that reach is a function of storytelling, not stage size.</em> The Residency cohort got SF-investor attention without the SF-investor crowd in the room.</p>
     <div class="clothesline-wall clip-wall-residency">
       <div class="clip-wall-note">Tap clips to open reels</div>
       <div class="clothesline">
@@ -3849,8 +3860,11 @@ img.event-mark {
     <div class="stpf-page" data-density="soft"><div class="page-inner closing-face face">
         <div class="marker">16</div>
         <div class="bc-mid">
-          <h2 class="bc-headline">ready to be<br><span class="accent">unavoidable?</span></h2>
-          <p class="bc-sub">If your company has a story worth making unavoidable, send the raw material: the company, the traction, the founder story, and the quarter-defining outcome. We take a handful of clients per quarter. <em>Pitch us.</em></p>
+          <h2 class="bc-headline">Ready to be<br><span class="accent">unavoidable?</span></h2>
+          <p class="bc-sub">If your company has a story worth making unavoidable, send the raw material. We take a handful of clients per quarter, by application. <em>Pitch us.</em></p>
+          <div class="bc-send" aria-label="What to send">
+            <span>The company</span><span>The traction</span><span>The founder story</span><span>The outcome</span>
+          </div>
           <div class="bc-proofline">
             <div><strong>5.27M+</strong><span>Startup case-study views</span></div>
             <div><strong>9.13M</strong><span>Event coverage views</span></div>
@@ -3887,6 +3901,7 @@ img.event-mark {
     <!-- PHYSICAL BACK COVER (hard, what shows when book closes) -->
     <div class="stpf-page stpf-hard" data-density="hard"><div class="page-inner back-cover-face face">
         <img class="back-cover-art" src="assets/back-cover.webp" alt="Vesting back cover">
+        <div class="back-cover-imprint">kamil@vesting.tv</div>
         <div class="back-cover-deco" aria-hidden="true">
           <svg viewBox="0 0 520 700" preserveAspectRatio="xMidYMid slice">
             <defs>
@@ -4086,7 +4101,7 @@ window.addEventListener('load', function() {
   // ¦¦ Indicator + button hookup ¦¦
   const labels = [
     'Cover', 'New Startup Media',
-    'Menu', 'Proof',
+    'Manifesto', 'Proof',
     'Numbers', 'Tarun & team',
     'Zaranna AI', 'Rounak',
     'ProjectX', 'Lance team',
@@ -4116,10 +4131,10 @@ window.addEventListener('load', function() {
   const chapterRanges = {
     cover: { start: 0, end: 2 },
     proof: { start: 3, end: 4 },
-    numbers: { start: 4, end: 6 },
-    cases: { start: 6, end: 24 },
-    events: { start: 24, end: 30 },
-    live: { start: 30, end: 31 },
+    numbers: { start: 4, end: 5 },
+    cases: { start: 5, end: 23 },
+    events: { start: 23, end: 29 },
+    live: { start: 29, end: 31 },
     pitch: { start: 31, end: 34 }
   };
 
@@ -4150,7 +4165,7 @@ window.addEventListener('load', function() {
     bookEl.style.setProperty('--page-edge-opacity', idx >= total - 1 ? '0' : Math.max(0.24, remainingRatio).toFixed(2));
     [...chapterBtns, ...bookmarkBtns].forEach(btn => {
       const range = chapterRanges[btn.dataset.section];
-      btn.classList.toggle('active', !!range && idx >= range.start && idx < range.end);
+      const inR = n => !!range && n >= range.start && n < range.end; btn.classList.toggle('active', inR(idx) || inR(idx + 1));
     });
     syncBookmarkVisibility();
   }
