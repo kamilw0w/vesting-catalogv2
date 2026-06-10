@@ -1484,36 +1484,54 @@ body.bookmark-jumping .chapter-bookmarks {
   }
 }
 @media (max-width: 760px) {
-  /* Single-page mode on phones &middot; hide the left page, show only right */
-  .catalog { width: 360px; height: 500px; }
-  .page { width: 100%; left: 0; }
-  .catalog::after, .endpaper { display: none; }
-  .face { padding: 28px 26px 22px; }
-  .marker { top: 18px; right: 26px; }
-  .cover-face, .back-cover-face { padding: 32px 26px !important; }
-  .cover-title { font-size: 36px; margin-top: 32px; }
-  .cover-script { font-size: 24px; }
-  .cover-logo { margin-top: 22px; }
-  .cover-logo svg { width: 120px; height: 120px; }
-  .menu-headline { font-size: 28px; }
-  .menu-item { grid-template-columns: 26px 110px 1fr; padding: 9px 0; }
-  .menu-item .name { font-size: 15px; }
-  .menu-item .desc { font-size: 11px; }
-  .nm-title { font-size: 26px; }
-  .nm-n { font-size: 30px; }
-  .nm-grid-item:first-child .nm-n { font-size: 44px; }
-  .nm-breakdown { grid-template-columns: repeat(3, 1fr); }
-  .case-title { font-size: 26px; }
-  .mv { font-size: 40px; }
-  .m.hero .mv { font-size: 50px; }
-  .bc-headline { font-size: 42px; }
-  .guest-title { font-size: 24px; }
-  .roster { grid-template-columns: 1fr; }
-  .roster-name { font-size: 11.5px; }
-  .polaroid { max-width: 210px; padding: 10px 10px 42px; }
-  .polaroid .caption { font-size: 17px; }
+  /* Portrait single-page mode: render each page at design size, scale to fit */
+  body { padding: 14px 10px 20px; }
+  .book { width: min(520px, calc(100vw - 20px)) !important; height: calc(min(520px, calc(100vw - 20px)) * 700 / 520) !important; min-width: 0 !important; min-height: 0 !important; }
+  .stf__item .page-inner, .stpf-page .page-inner {
+    width: 600px !important;
+    height: 808px !important;
+    transform: scale(var(--mscale, 1));
+    transform-origin: top left;
+  }
+  .instruction-copy { display: none; }
+  /* nav pills move below the book instead of overlaying the page */
+  .controls, .ctrl-btn, .page-indicator { position: static !important; transform: none !important; }
+  .controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 14px; pointer-events: auto; }
+  .ctrl-btn { font-size: 10px; padding: 9px 16px; min-width: 0; }
 }
 
+
+/* ======== The Math: receipt + economics ======== */
+.receipt {
+  width: 318px; margin: 14px auto 0; padding: 26px 24px 22px;
+  background: oklch(0.97 0.014 84);
+  color: var(--ink);
+  transform: rotate(-1.4deg);
+  box-shadow: 0 18px 34px rgba(24,18,10,0.22), 0 3px 8px rgba(24,18,10,0.12);
+  font-family: var(--f-mono);
+  --notch: 7px;
+  -webkit-mask:
+    conic-gradient(from -45deg at 50% calc(100% - var(--notch)), #000 90deg, #0000 0) 50% / calc(2*var(--notch)) 100%,
+    linear-gradient(#000 0 0) 50% calc(-1*var(--notch)) / 100% 100% no-repeat;
+  mask:
+    conic-gradient(from -45deg at 50% calc(100% - var(--notch)), #000 90deg, #0000 0) 50% / calc(2*var(--notch)) 100%,
+    linear-gradient(#000 0 0) 50% calc(-1*var(--notch)) / 100% 100% no-repeat;
+}
+.r-head { text-align: center; margin-bottom: 12px; }
+.r-brand { font-family: var(--f-brand); font-size: 26px; letter-spacing: 0.01em; }
+.r-sub { font-size: 8px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin-top: 3px; }
+.r-rule { border-top: 1px dashed var(--rule-hi); margin: 9px 0; }
+.r-line { display: flex; align-items: baseline; gap: 6px; font-size: 9.5px; letter-spacing: 0.04em; padding: 2.5px 0; text-transform: uppercase; }
+.r-line i { flex: 1; border-bottom: 1px dotted var(--rule); transform: translateY(-2px); }
+.r-line span:last-child { font-variant-numeric: tabular-nums; }
+.r-total { font-weight: 600; font-size: 10.5px; }
+.r-gold span { color: var(--accent-deep); font-weight: 600; }
+.r-note { font-size: 8px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); margin: 7px 0 3px; }
+.r-foot { text-align: center; font-size: 8px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); margin-top: 11px; }
+.math-face .case-title { font-size: 46px; line-height: 1.0; margin: 26px 0 22px; letter-spacing: -0.02em; }
+.math-face .story { font-size: 15px; line-height: 1.7; max-width: 540px; }
+.math-face .metrics { margin-top: auto; }
+.math-note { font-family: var(--f-mono); font-size: 8.2px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 14px; line-height: 1.7; }
 
 /* ======== StPageFlip integration ======== */
 .book {
@@ -3846,6 +3864,50 @@ img.event-mark {
         </ol>
         <div class="roster-foot"><em>More guests booked for Q2 2026.</em></div>
       </div></div>
+    <div class="stpf-page" data-density="soft"><div class="page-inner back img-back face">
+        <div class="receipt" aria-label="Q1 organic distribution receipt">
+          <div class="r-head">
+            <div class="r-brand">Vesting</div>
+            <div class="r-sub">Organic distribution &middot; Q1 2026</div>
+            <div class="r-sub">Miami, FL &middot; receipt nº 001</div>
+          </div>
+          <div class="r-rule"></div>
+          <div class="r-line"><span>ProjectX launch</span><i></i><span>3,612,440</span></div>
+          <div class="r-line"><span>Founders School carousel</span><i></i><span>~1,000,000</span></div>
+          <div class="r-line"><span>Veritas debut</span><i></i><span>234,165</span></div>
+          <div class="r-line"><span>Lance raise</span><i></i><span>186,585</span></div>
+          <div class="r-line"><span>Enjamb debut</span><i></i><span>161,000</span></div>
+          <div class="r-line"><span>Zolvo live pitch</span><i></i><span>80,000+</span></div>
+          <div class="r-line"><span>Venture vlogs &times;2</span><i></i><span>175,000</span></div>
+          <div class="r-line"><span>Event coverage &times;58</span><i></i><span>9,130,000</span></div>
+          <div class="r-rule"></div>
+          <div class="r-line r-total"><span>Total organic views</span><i></i><span>14.58M+</span></div>
+          <div class="r-line r-gold"><span>Paid-media equivalent</span><i></i><span>&asymp;&thinsp;$160,000</span></div>
+          <div class="r-line"><span>Ad spend</span><i></i><span>$0.00</span></div>
+          <div class="r-rule"></div>
+          <div class="r-note">Not for sale at any CPM:</div>
+          <div class="r-line"><span>YC acceptances</span><i></i><span>&times;3</span></div>
+          <div class="r-line"><span>ARR pipeline, one post</span><i></i><span>$300K</span></div>
+          <div class="r-line"><span>Angel check, on the spot</span><i></i><span>&times;1</span></div>
+          <div class="r-rule"></div>
+          <div class="r-foot">Thank you for building in public.</div>
+        </div>
+      </div></div>
+    <div class="stpf-page" data-density="soft"><div class="page-inner face math-face">
+        <div class="marker"><span class="sec">The Math</span>16</div>
+        <div class="case-top">
+          <div class="case-type">Economics &middot; organic vs paid</div>
+          <div class="case-name">Vesting <span class="role">&middot; the quarter, priced</span></div>
+        </div>
+        <h2 class="case-title">Attention has a market price. <em>We just don&rsquo;t pay it.</em></h2>
+        <p class="story">Buying Q1&rsquo;s <strong>14.58M views</strong> as paid media would have cost roughly <strong>$160,000</strong> &mdash; before a single YC acceptance, angel check, or inbound call. Vesting doesn&rsquo;t buy reach. We engineer stories the feed wants to carry, and the outcomes that follow <em>don&rsquo;t have a rate card.</em></p>
+        <div class="metrics">
+          <div class="m hero"><div class="mv">$160<span class="u">K</span></div><div class="ml">Paid equivalent</div></div>
+          <div class="m"><div class="mv">$0</div><div class="ml">Ad spend</div></div>
+          <div class="m"><div class="mv">14.58<span class="u">M</span></div><div class="ml">Organic views</div></div>
+        </div>
+        <div class="math-note">Estimated at a conservative $11 blended CPM for short-form video. The outcomes aren&rsquo;t in the math &mdash; they can&rsquo;t be bought.</div>
+      </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner back img-back face profile-back">
         <div class="polaroid tilt-r">
           <div class="tape"></div>
@@ -3858,7 +3920,7 @@ img.event-mark {
       </div></div>
     <!-- CLOSING CONTENT PAGE -->
     <div class="stpf-page" data-density="soft"><div class="page-inner closing-face face">
-        <div class="marker">16</div>
+        <div class="marker">17</div>
         <div class="bc-mid">
           <h2 class="bc-headline">Ready to be<br><span class="accent">unavoidable?</span></h2>
           <p class="bc-sub">If your company has a story worth making unavoidable, send the raw material. We take a handful of clients per quarter, by application. <em>Pitch us.</em></p>
@@ -4048,6 +4110,12 @@ img.event-mark {
 <div class="instruction"><span class="instruction-copy">Click the right half to advance &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> also work</span><button id="soundToggle" class="snd-btn">&#9834; sound on</button></div>
 <script src="assets/vendor/page-flip.browser.js"></script>
 <script>
+function setMobileScale() {
+  const w = Math.min(520, window.innerWidth - 20);
+  document.documentElement.style.setProperty('--mscale', (w / 600).toFixed(4));
+}
+setMobileScale();
+window.addEventListener('resize', setMobileScale);
 window.addEventListener('load', function() {
   if (typeof St === 'undefined' || !St.PageFlip) {
     console.error('StPageFlip failed to load from CDN');
@@ -4078,7 +4146,7 @@ window.addEventListener('load', function() {
     maxHeight: 1350,
     drawShadow: true,
     flippingTime: 900,
-    usePortrait: false,
+    usePortrait: window.innerWidth <= 760,
     startZIndex: 0,
     autoSize: true,
     maxShadowOpacity: 0.5,
@@ -4115,7 +4183,8 @@ window.addEventListener('load', function() {
     'YC Demo Day', 'Founders Inc',
     'Founders Inc', 'The Residency',
     'The Residency', 'Vesting Live',
-    'Vesting Live', 'Brycent',
+    'Vesting Live', 'The receipt',
+    'The Math', 'Brycent',
     'Closing',
     'Back cover'
   ];
@@ -4135,7 +4204,7 @@ window.addEventListener('load', function() {
     cases: { start: 5, end: 23 },
     events: { start: 23, end: 29 },
     live: { start: 29, end: 31 },
-    pitch: { start: 31, end: 34 }
+    pitch: { start: 31, end: 36 }
   };
 
   function syncBookmarkVisibility() {
