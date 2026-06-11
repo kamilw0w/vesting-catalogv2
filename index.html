@@ -1559,6 +1559,31 @@ body.bookmark-jumping .chapter-bookmarks {
 .book { animation: bookEntrance 0.95s cubic-bezier(0.22, 0.8, 0.3, 1) both; }
 .clip:hover { animation-play-state: paused; transform: rotate(0deg) translateY(-3px); transition: transform 0.25s ease; }
 
+/* ======== Lightbox ======== */
+.lightbox {
+  position: fixed; inset: 0; z-index: 50000;
+  display: flex; align-items: center; justify-content: center;
+  background: oklch(0.16 0.025 70 / 0.88);
+  backdrop-filter: blur(7px); -webkit-backdrop-filter: blur(7px);
+  opacity: 0; pointer-events: none; transition: opacity 0.28s ease;
+  cursor: zoom-out;
+}
+.lightbox.open { opacity: 1; pointer-events: auto; }
+.lightbox figure { margin: 0; text-align: center; transform: scale(0.96); transition: transform 0.28s cubic-bezier(0.22,0.8,0.3,1); }
+.lightbox.open figure { transform: scale(1); }
+.lightbox img {
+  max-width: min(88vw, 980px); max-height: 82vh;
+  background: oklch(0.97 0.014 84);
+  border: 12px solid oklch(0.97 0.014 84);
+  box-shadow: 0 30px 80px rgba(10,6,2,0.55);
+  display: block; margin: 0 auto;
+}
+.lightbox figcaption {
+  margin-top: 14px; font-family: var(--f-mono); font-size: 9.5px;
+  letter-spacing: 0.18em; text-transform: uppercase; color: oklch(0.85 0.06 82);
+}
+.case-post-frame img, .polaroid .photo img { cursor: zoom-in; }
+
 /* ======== StPageFlip integration ======== */
 .book {
   margin: 0 auto;
@@ -3333,9 +3358,9 @@ img.event-mark {
           <div class="nm-br"><span class="v">3.6<em>M</em></span><span class="l">ProjectX</span></div>
           <div class="nm-br"><span class="v">~1<em>M</em></span><span class="l">Founders School</span></div>
           <div class="nm-br"><span class="v">234K</span><span class="l">Veritas</span></div>
-          <div class="nm-br"><span class="v">186K</span><span class="l">Lance · $3.7M raise</span></div>
+          <div class="nm-br"><span class="v">186K</span><span class="l">Lance raise</span></div>
           <div class="nm-br"><span class="v">161K</span><span class="l">Enjamb</span></div>
-          <div class="nm-br"><span class="v">80K</span><span class="l">Zolvo · angel check</span></div>
+          <div class="nm-br"><span class="v">80K</span><span class="l">Zolvo pitch</span></div>
         </div>
         <div class="footnote">
           Startup views are organic and verified from platform analytics; excludes paid distribution.<br>
@@ -4145,6 +4170,12 @@ img.event-mark {
   <span class="page-indicator" id="indicator"><span class="pg">01</span>Cover</span>
   <button class="ctrl-btn" id="nextBtn">Next &rarr;</button>
 </div>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <figure>
+    <img id="lightboxImg" src="" alt="">
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+</div>
 <div class="instruction"><span class="instruction-copy">Click the right half to advance &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> also work</span><button id="soundToggle" class="snd-btn">&#9834; sound on</button></div>
 <script src="assets/vendor/page-flip.browser.js"></script>
 <script>
@@ -4308,6 +4339,72 @@ window.addEventListener('load', function() {
     hideBookmarksIfClosing();
     pageFlip.flipNext();
   }
+
+  /* ---- Lightbox ---- */
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  const lbCap = document.getElementById('lightboxCap');
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('.case-post-frame img, .polaroid .photo img');
+    if (img) {
+      e.stopPropagation(); e.preventDefault();
+      lbImg.src = img.currentSrc || img.src;
+      const frame = img.closest('.case-post-frame');
+      const pol = img.closest('.polaroid');
+      let cap = '';
+      if (frame) { const c = frame.parentElement.querySelector('.case-post-caption'); cap = c ? c.textContent : ''; }
+      else if (pol) { const c = pol.querySelector('.caption'); cap = c ? c.textContent.trim().replace(/\s+/g, ' ') : ''; }
+      lbCap.textContent = cap;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      return;
+    }
+    if (e.target.closest('#lightbox')) {
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+    }
+  }, true);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lb.classList.contains('open')) {
+      lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  /* ---- Hash deep links ---- */
+  const hashPages = { cover: 0, manifesto: 2, toc: 1, proof: 3, numbers: 4, cases: 6, events: 24, live: 30, math: 31, receipt: 31, pitch: 33 };
+  pageFlip.on('init', () => {
+    const key = (location.hash || '').replace('#', '').toLowerCase();
+    if (key && key in hashPages && typeof pageFlip.turnToPage === 'function') {
+      setTimeout(() => pageFlip.turnToPage(hashPages[key]), 60);
+    }
+  });
+  const sectionOrder = ['pitch', 'live', 'events', 'cases', 'numbers', 'proof'];
+  pageFlip.on('flip', () => {
+    const idx = pageFlip.getCurrentPageIndex();
+    let current = '';
+    for (const s of sectionOrder) {
+      const r = chapterRanges[s];
+      if (r && (idx >= r.start && idx < r.end || (idx + 1) >= r.start && (idx + 1) < r.end)) { current = s; break; }
+    }
+    if (current) history.replaceState(null, '', '#' + current);
+    else history.replaceState(null, '', location.pathname);
+  });
+
+  /* ---- Look-ahead image preload ---- */
+  const allInners = () => document.querySelectorAll('.page-inner');
+  function preloadAhead() {
+    const idx = pageFlip.getCurrentPageIndex();
+    const inners = allInners();
+    for (let i = idx + 1; i <= Math.min(idx + 6, inners.length - 1); i++) {
+      inners[i].querySelectorAll('img[loading="lazy"]').forEach(img => {
+        if (!img.complete) { const t = new Image(); t.src = img.currentSrc || img.src; }
+        img.loading = 'eager';
+      });
+    }
+  }
+  pageFlip.on('flip', preloadAhead);
+  pageFlip.on('init', preloadAhead);
+
   document.querySelectorAll('.toc-item').forEach(item => {
     item.addEventListener('click', (e) => {
       e.stopPropagation();
