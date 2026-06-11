@@ -4344,31 +4344,58 @@ window.addEventListener('load', function() {
   const lb = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightboxImg');
   const lbCap = document.getElementById('lightboxCap');
+  function openLightbox(img) {
+    lbImg.src = img.currentSrc || img.src;
+    const frame = img.closest('.case-post-frame');
+    const pol = img.closest('.polaroid');
+    let cap = '';
+    if (frame) { const c = frame.parentElement.querySelector('.case-post-caption'); cap = c ? c.textContent : ''; }
+    else if (pol) { const c = pol.querySelector('.caption'); cap = c ? c.textContent.trim().replace(/\s+/g, ' ') : ''; }
+    lbCap.textContent = cap;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+  }
+  function closeLightbox() {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+  }
   document.addEventListener('click', (e) => {
     const img = e.target.closest('.case-post-frame img, .polaroid .photo img');
-    if (img) {
-      e.stopPropagation(); e.preventDefault();
-      lbImg.src = img.currentSrc || img.src;
-      const frame = img.closest('.case-post-frame');
-      const pol = img.closest('.polaroid');
-      let cap = '';
-      if (frame) { const c = frame.parentElement.querySelector('.case-post-caption'); cap = c ? c.textContent : ''; }
-      else if (pol) { const c = pol.querySelector('.caption'); cap = c ? c.textContent.trim().replace(/\s+/g, ' ') : ''; }
-      lbCap.textContent = cap;
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      return;
-    }
-    if (e.target.closest('#lightbox')) {
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-    }
+    if (img) { e.stopPropagation(); e.preventDefault(); openLightbox(img); return; }
+    if (e.target.closest('#lightbox')) closeLightbox();
   }, true);
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && lb.classList.contains('open')) {
       lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true');
     }
   });
+
+  /* ---- Keep the flip engine's hands off zoomable photos ---- */
+  const ZOOM_SEL = '.case-post-frame img, .polaroid .photo img';
+  // Desktop: swallow the press entirely so no flip starts
+  document.addEventListener('mousedown', (e) => {
+    if (e.target.closest(ZOOM_SEL) || e.target.closest('#lightbox')) e.stopPropagation();
+  }, true);
+  // Touch: allow swipes that start on a photo, but swallow taps (small movement)
+  let zoomTouch = null;
+  document.addEventListener('touchstart', (e) => {
+    const t = e.touches[0];
+    const img = e.target.closest(ZOOM_SEL);
+    const inLb = e.target.closest('#lightbox');
+    if (img || inLb) zoomTouch = { x: t.clientX, y: t.clientY, img: img, inLb: !!inLb };
+  }, true);
+  document.addEventListener('touchend', (e) => {
+    if (!zoomTouch) return;
+    const t = e.changedTouches[0];
+    const moved = Math.hypot(t.clientX - zoomTouch.x, t.clientY - zoomTouch.y);
+    const tap = moved < 12;
+    const ctx = zoomTouch;
+    zoomTouch = null;
+    if (!tap) return; // swipe: let the book fold
+    e.stopPropagation(); e.preventDefault();
+    if (ctx.inLb) closeLightbox();
+    else if (ctx.img) openLightbox(ctx.img);
+  }, { capture: true, passive: false });
 
   /* ---- Hash deep links ---- */
   const hashPages = { cover: 0, manifesto: 2, toc: 1, proof: 3, numbers: 4, cases: 6, events: 24, live: 30, math: 31, receipt: 31, pitch: 33 };
