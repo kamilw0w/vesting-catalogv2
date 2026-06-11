@@ -1584,6 +1584,19 @@ body.bookmark-jumping .chapter-bookmarks {
 }
 .case-post-frame img, .polaroid .photo img { cursor: zoom-in; }
 
+/* ======== The Channel ======== */
+.channel-stack { width: 348px; margin: 6px auto 0; display: flex; flex-direction: column; gap: 16px; }
+.channel-stack .ch-a { transform: rotate(-1.6deg); }
+.channel-stack .ch-b { transform: rotate(1.2deg); }
+.channel-face .case-title { font-size: 36px; line-height: 1.04; }
+.aud { margin: 16px 0 6px; }
+.aud-kicker { font-family: var(--f-mono); font-size: 8.5px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent-deep); margin-bottom: 8px; }
+.aud-row { display: flex; align-items: center; gap: 12px; padding: 4px 0; }
+.aud-row .n { font-family: var(--f-brand); font-size: 14px; width: 128px; color: var(--ink); }
+.aud-row .bar { flex: 1; height: 4px; background: var(--rule); border-radius: 2px; position: relative; overflow: hidden; }
+.aud-row .bar i { position: absolute; top: 0; left: 0; bottom: 0; width: var(--w); background: var(--accent); border-radius: 2px; }
+.aud-row .p { font-family: var(--f-mono); font-size: 9px; letter-spacing: 0.08em; color: var(--muted); width: 46px; text-align: right; }
+
 /* ======== StPageFlip integration ======== */
 .book {
   margin: 0 auto;
@@ -3188,12 +3201,13 @@ img.event-mark {
         <nav class="toc" aria-label="In this issue">
           <div class="toc-kicker">In this issue</div>
           <button class="toc-item" data-page="2" type="button"><span>The manifesto</span><i></i><span>02</span></button>
-          <button class="toc-item" data-page="3" type="button"><span>Q1 reach ledger</span><i></i><span>03</span></button>
-          <button class="toc-item" data-page="6" type="button"><span>Seven launch stories</span><i></i><span>04</span></button>
-          <button class="toc-item" data-page="24" type="button"><span>Events covered</span><i></i><span>12</span></button>
-          <button class="toc-item" data-page="30" type="button"><span>Vesting Live</span><i></i><span>15</span></button>
-          <button class="toc-item" data-page="31" type="button"><span>The math</span><i></i><span>16</span></button>
-          <button class="toc-item" data-page="33" type="button"><span>Pitch us</span><i></i><span>17</span></button>
+          <button class="toc-item" data-page="3" type="button"><span>The channel</span><i></i><span>03</span></button>
+          <button class="toc-item" data-page="5" type="button"><span>Q1 reach ledger</span><i></i><span>04</span></button>
+          <button class="toc-item" data-page="8" type="button"><span>Seven launch stories</span><i></i><span>05</span></button>
+          <button class="toc-item" data-page="26" type="button"><span>Events covered</span><i></i><span>13</span></button>
+          <button class="toc-item" data-page="32" type="button"><span>Vesting Live</span><i></i><span>16</span></button>
+          <button class="toc-item" data-page="33" type="button"><span>The math</span><i></i><span>17</span></button>
+          <button class="toc-item" data-page="35" type="button"><span>Pitch us</span><i></i><span>18</span></button>
         </nav>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
@@ -3213,6 +3227,44 @@ img.event-mark {
             <img loading="lazy" decoding="async" src="assets/wax-seal.webp" alt="Vesting wax seal" style="width:100%;height:100%;display:block;object-fit:contain;">
           </div>
         </div>
+      </div></div>
+    <div class="stpf-page" data-density="soft"><div class="page-inner back img-back face">
+        <div class="channel-stack">
+          <div class="case-post ch-a">
+            <div class="case-post-frame">
+              <img loading="lazy" decoding="async" src="assets/ig-dashboard.webp" alt="Instagram professional dashboard, last 30 days">
+            </div>
+            <div class="case-post-caption">Instagram dashboard &mdash; last 30 days</div>
+          </div>
+          <div class="case-post ch-b">
+            <div class="case-post-frame">
+              <img loading="lazy" decoding="async" src="assets/ig-top-posts.webp" alt="160,210 shares and top posts, last 30 days">
+            </div>
+            <div class="case-post-caption">160,210 shares &middot; top posts</div>
+          </div>
+        </div>
+      </div></div>
+    <div class="stpf-page" data-density="soft"><div class="page-inner face channel-face">
+        <div class="marker"><span class="sec">The Channel</span>03</div>
+        <div class="case-top">
+          <div class="case-type">Distribution &middot; last 30 days on Instagram</div>
+          <div class="case-name">The Channel <span class="role">&middot; May 12 &ndash; Jun 10</span></div>
+        </div>
+        <h2 class="case-title">We don&rsquo;t build you an audience. <em>We bring ours.</em></h2>
+        <p class="story">The machine doesn&rsquo;t idle between launches. In the last thirty days: <strong>7.3M views</strong>, <strong>568.5K interactions</strong>, and <strong>160,210 shares</strong> across 131 posts &mdash; plus <strong>24.1K new followers</strong> who showed up on their own. When your story ships, it doesn&rsquo;t start from zero. <em>It starts mid-stream.</em></p>
+        <div class="aud">
+          <div class="aud-kicker">Audience &middot; top countries</div>
+          <div class="aud-row"><span class="n">United States</span><span class="bar"><i style="--w:54.4%"></i></span><span class="p">54.4%</span></div>
+          <div class="aud-row"><span class="n">India</span><span class="bar"><i style="--w:13.2%"></i></span><span class="p">13.2%</span></div>
+          <div class="aud-row"><span class="n">Canada</span><span class="bar"><i style="--w:4.2%"></i></span><span class="p">4.2%</span></div>
+          <div class="aud-row"><span class="n">United Kingdom</span><span class="bar"><i style="--w:2.0%"></i></span><span class="p">2.0%</span></div>
+        </div>
+        <div class="metrics">
+          <div class="m hero"><div class="mv">7.3<span class="u">M</span></div><div class="ml">Views / 30 days</div></div>
+          <div class="m"><div class="mv">568.5<span class="u">K</span></div><div class="ml">Interactions</div></div>
+          <div class="m"><div class="mv">24.1<span class="u">K</span></div><div class="ml">New followers</div></div>
+        </div>
+        <div class="math-note">Source: Instagram professional dashboard, May 12 &ndash; June 10. Channel stats are separate from the Q1 case ledger.</div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner back img-back face">
         <div class="logo-wall">
@@ -3323,7 +3375,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Numbers</span>03</div>
+        <div class="marker"><span class="sec">Numbers</span>04</div>
         <h2 class="nm-title">Seven launch stories. One pipeline unlock. <em>5.27M+ views.</em></h2>
         <p class="nm-intro">Thirteen founders across seven teams came to Vesting before the headline. The launch stories drove viral reach; the pipeline story turned one post into real ARR conversation. Same job throughout: traction that changes a trajectory.</p>
         <div class="nm-grid">
@@ -3378,7 +3430,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 01 / 07</span>04</div>
+        <div class="marker"><span class="sec">Case 01 / 07</span>05</div>
         <div class="case-top">
           <div class="case-type">AI · Single-Post Inbound · YC</div>
           <div class="case-name">Zaranna AI <span class="role">· founder, Tarun Vedula</span></div>
@@ -3429,7 +3481,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 02 / 07</span>05</div>
+        <div class="marker"><span class="sec">Case 02 / 07</span>06</div>
         <div class="case-top">
           <div class="case-type">Viral Launch &middot; YC Accept</div>
           <div class="case-name">ProjectX <span class="role">&middot; founder, Rounak Adhikary</span></div>
@@ -3478,7 +3530,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 03 / 07</span>06</div>
+        <div class="marker"><span class="sec">Case 03 / 07</span>07</div>
         <div class="case-top">
           <div class="case-type">Funding &middot; AI for hotel ops</div>
           <div class="case-name">Lance <span class="role">&middot; founders, Caleb Chan, Gatik Trivedi &amp; Gavin Brennen</span></div>
@@ -3509,7 +3561,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 04 / 07</span>07</div>
+        <div class="marker"><span class="sec">Case 04 / 07</span>08</div>
         <div class="case-top">
           <div class="case-type">Stealth &middot; backed by Alexis Ohanian</div>
           <div class="case-name">Veritas <span class="role">&middot; founder, Luci Holland</span></div>
@@ -3540,7 +3592,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 05 / 07</span>08</div>
+        <div class="marker"><span class="sec">Case 05 / 07</span>09</div>
         <div class="case-top">
           <div class="case-type">Live Pitch &middot; YC P26</div>
           <div class="case-name">Zolvo <span class="role">&middot; founders, Isabela Rodriguez &amp; Tony Montes</span></div>
@@ -3567,7 +3619,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 06 / 07</span>09</div>
+        <div class="marker"><span class="sec">Case 06 / 07</span>10</div>
         <div class="case-top">
           <div class="case-type">Stealth debut &middot; YC accept</div>
           <div class="case-name">Enjamb Labs <span class="role">&middot; founders, Rayan Mubarak &amp; Maadhav Deekshitha</span></div>
@@ -3594,7 +3646,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Case 07 / 07</span>10</div>
+        <div class="marker"><span class="sec">Case 07 / 07</span>11</div>
         <div class="case-top">
           <div class="case-type">Education &middot; $150K/yr high school</div>
           <div class="case-name">Founders School <span class="role">&middot; Head of Founder Development, Nat Eliason</span></div>
@@ -3625,7 +3677,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face vlog-case">
-        <div class="marker"><span class="sec">Venture Vlog 01 / 02</span>11</div>
+        <div class="marker"><span class="sec">Venture Vlog 01 / 02</span>12</div>
         <div class="case-top">
           <div class="case-type">Long-form HQ walkthrough &middot; YC &middot; AI insurance</div>
           <div class="case-name">Corgi <span class="role">&middot; full-stack insurance carrier for startups</span></div>
@@ -3659,7 +3711,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face vlog-case">
-        <div class="marker"><span class="sec">Venture Vlog 02 / 02</span>12</div>
+        <div class="marker"><span class="sec">Venture Vlog 02 / 02</span>13</div>
         <div class="case-top">
           <div class="case-type">Climate tech &middot; founder story &middot; investor inbound</div>
           <div class="case-name">Kind Designs <span class="role">&middot; founder, Anya Freeman</span></div>
@@ -3701,7 +3753,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Event 01 / 03</span>12</div>
+        <div class="marker"><span class="sec">Event 01 / 03</span>13</div>
         <div class="case-top">
           <div class="case-type">YC Demo Day &middot; &times;2 &middot; with Garry Tan</div>
           <div class="case-name">Y Combinator <span class="role">&middot; Winter &amp; Spring 2026</span></div>
@@ -3768,7 +3820,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Event 02 / 03</span>13</div>
+        <div class="marker"><span class="sec">Event 02 / 03</span>14</div>
         <div class="case-top">
           <div class="case-type">Founders Inc &middot; &times;2 &middot; SF flagship</div>
         <div class="case-name">Founders Inc Demo Day <span class="role">&middot; where the format started</span></div>
@@ -3839,7 +3891,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Event 03 / 03</span>14</div>
+        <div class="marker"><span class="sec">Event 03 / 03</span>15</div>
         <div class="case-top">
           <div class="case-type">The Residency Demo Day &middot; emerging cohort</div>
       <div class="case-name">The Residency <span class="role">&middot; smaller room, outsized reach</span></div>
@@ -3878,7 +3930,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face">
-        <div class="marker"><span class="sec">Vesting Live</span>15</div>
+        <div class="marker"><span class="sec">Vesting Live</span>16</div>
         <div class="guest-eye">The weekly online show</div>
         <h2 class="guest-title">Guests <em>on-air.</em></h2>
         <p class="guest-sub">YC founders, Founders Inc residents, Thiel Fellows, VC partners &middot; all in the same chair. No fluff, no PR-speak. Q1 2026 lineup.</p>
@@ -3956,7 +4008,7 @@ img.event-mark {
         </div>
       </div></div>
     <div class="stpf-page" data-density="soft"><div class="page-inner face math-face">
-        <div class="marker"><span class="sec">The Math</span>16</div>
+        <div class="marker"><span class="sec">The Math</span>17</div>
         <div class="case-top">
           <div class="case-type">Economics &middot; organic vs paid</div>
           <div class="case-name">Vesting <span class="role">&middot; the quarter, priced</span></div>
@@ -3982,7 +4034,7 @@ img.event-mark {
       </div></div>
     <!-- CLOSING CONTENT PAGE -->
     <div class="stpf-page" data-density="soft"><div class="page-inner closing-face face">
-        <div class="marker">17</div>
+        <div class="marker">18</div>
         <div class="bc-mid">
           <h2 class="bc-headline">Ready to be<br><span class="accent">unavoidable?</span></h2>
           <p class="bc-sub">If your company has a story worth making unavoidable, send the raw material. We take a handful of clients per quarter, by application. <em>Pitch us.</em></p>
@@ -4158,12 +4210,12 @@ img.event-mark {
   <div class="chapter-bookmarks" aria-label="Catalog sections" style="display:none"></div>
 </div>
 <div class="jump-bar" id="jumpBar" aria-label="Jump to section">
-  <button class="jump-btn" data-section="proof" data-page="3" type="button">Proof</button>
-  <button class="jump-btn" data-section="numbers" data-page="4" type="button">Numbers</button>
-  <button class="jump-btn" data-section="cases" data-page="6" type="button">Cases</button>
-  <button class="jump-btn" data-section="events" data-page="24" type="button">Events</button>
-  <button class="jump-btn" data-section="live" data-page="30" type="button">Live</button>
-  <button class="jump-btn" data-section="pitch" data-page="31" type="button">Pitch</button>
+  <button class="jump-btn" data-section="proof" data-page="5" type="button">Proof</button>
+  <button class="jump-btn" data-section="numbers" data-page="6" type="button">Numbers</button>
+  <button class="jump-btn" data-section="cases" data-page="8" type="button">Cases</button>
+  <button class="jump-btn" data-section="events" data-page="26" type="button">Events</button>
+  <button class="jump-btn" data-section="live" data-page="32" type="button">Live</button>
+  <button class="jump-btn" data-section="pitch" data-page="33" type="button">Pitch</button>
 </div>
 <div class="controls">
   <button class="ctrl-btn" id="prevBtn" disabled>&larr; Prev</button>
@@ -4238,7 +4290,8 @@ window.addEventListener('load', function() {
   // ¦¦ Indicator + button hookup ¦¦
   const labels = [
     'Cover', 'New Startup Media',
-    'Manifesto', 'Proof',
+    'Manifesto', 'Channel proof',
+    'The Channel', 'Proof',
     'Numbers', 'Tarun & team',
     'Zaranna AI', 'Rounak',
     'ProjectX', 'Lance team',
@@ -4268,12 +4321,14 @@ window.addEventListener('load', function() {
   let isBookFlat = true;
   const chapterRanges = {
     cover: { start: 0, end: 2 },
-    proof: { start: 3, end: 4 },
-    numbers: { start: 4, end: 5 },
-    cases: { start: 5, end: 23 },
-    events: { start: 23, end: 29 },
-    live: { start: 29, end: 31 },
-    pitch: { start: 31, end: 36 }
+    channel: { start: 3, end: 5 },
+    proof: { start: 5, end: 6 },
+    numbers: { start: 6, end: 7 },
+    cases: { start: 7, end: 25 },
+    events: { start: 25, end: 31 },
+    live: { start: 31, end: 33 },
+    math: { start: 33, end: 35 },
+    pitch: { start: 33, end: 38 }
   };
 
   function syncBookmarkVisibility() {
@@ -4398,14 +4453,14 @@ window.addEventListener('load', function() {
   }, { capture: true, passive: false });
 
   /* ---- Hash deep links ---- */
-  const hashPages = { cover: 0, manifesto: 2, toc: 1, proof: 3, numbers: 4, cases: 6, events: 24, live: 30, math: 31, receipt: 31, pitch: 33 };
+  const hashPages = { cover: 0, manifesto: 2, toc: 1, channel: 3, reach: 3, proof: 5, numbers: 6, cases: 8, events: 26, live: 32, math: 33, receipt: 33, pitch: 35 };
   pageFlip.on('init', () => {
     const key = (location.hash || '').replace('#', '').toLowerCase();
     if (key && key in hashPages && typeof pageFlip.turnToPage === 'function') {
       setTimeout(() => pageFlip.turnToPage(hashPages[key]), 60);
     }
   });
-  const sectionOrder = ['pitch', 'live', 'events', 'cases', 'numbers', 'proof'];
+  const sectionOrder = ['math', 'pitch', 'live', 'events', 'cases', 'numbers', 'proof', 'channel'];
   pageFlip.on('flip', () => {
     const idx = pageFlip.getCurrentPageIndex();
     let current = '';
