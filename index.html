@@ -1516,10 +1516,12 @@ body.bookmark-jumping .chapter-bookmarks {
 
 /* ======== The Math: receipt + economics ======== */
 .receipt {
-  width: 318px; margin: 14px auto 0; padding: 26px 24px 22px;
+  width: 318px; margin: 26px auto 0; padding: 26px 24px 22px;
   background: oklch(0.97 0.014 84);
   color: var(--ink);
-  transform: rotate(-1.4deg);
+  transform: rotate(-1.4deg) scale(1.24);
+  transform-origin: top center;
+  cursor: zoom-in;
   box-shadow: 0 18px 34px rgba(24,18,10,0.22), 0 3px 8px rgba(24,18,10,0.12);
   font-family: var(--f-mono);
   --notch: 7px;
@@ -1544,6 +1546,12 @@ body.bookmark-jumping .chapter-bookmarks {
 .math-face .case-title { font-size: 46px; line-height: 1.0; margin: 26px 0 22px; letter-spacing: -0.02em; }
 .math-face .story { font-size: 15px; line-height: 1.7; max-width: 540px; }
 .math-face .metrics { margin-top: auto; }
+.lightbox .receipt-zoom {
+  transform: scale(var(--rscale, 1.4)) !important;
+  transform-origin: center center;
+  margin: 0 auto; cursor: default;
+  box-shadow: 0 40px 90px rgba(8,5,2,0.6);
+}
 .math-note { font-family: var(--f-mono); font-size: 8.2px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-top: 14px; line-height: 1.7; }
 
 /* ======== Premium pass: contents, drop caps, gilt, entrance ======== */
@@ -4450,10 +4458,28 @@ window.addEventListener('load', function() {
   function closeLightbox() {
     lb.classList.remove('open');
     lb.setAttribute('aria-hidden', 'true');
+    const z = lb.querySelector('.receipt-zoom');
+    if (z) z.remove();
+    lbImg.style.display = '';
+  }
+  function openReceiptZoom(receiptEl) {
+    const old = lb.querySelector('.receipt-zoom');
+    if (old) old.remove();
+    const clone = receiptEl.cloneNode(true);
+    clone.classList.add('receipt-zoom');
+    const s = Math.min(1.5, (window.innerHeight * 0.8) / 600, (window.innerWidth * 0.9) / 380);
+    clone.style.setProperty('--rscale', s.toFixed(3));
+    lbImg.style.display = 'none';
+    lbImg.parentElement.insertBefore(clone, lbCap);
+    lbCap.textContent = 'Q1 2026 \u00b7 organic distribution receipt';
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
   }
   document.addEventListener('click', (e) => {
     const img = e.target.closest('.case-post-frame img, .polaroid .photo img');
     if (img) { e.stopPropagation(); e.preventDefault(); openLightbox(img); return; }
+    const rcpt = e.target.closest('.receipt');
+    if (rcpt && !rcpt.classList.contains('receipt-zoom')) { e.stopPropagation(); e.preventDefault(); openReceiptZoom(rcpt); return; }
     if (e.target.closest('#lightbox')) closeLightbox();
   }, true);
   document.addEventListener('keydown', (e) => {
@@ -4466,7 +4492,7 @@ window.addEventListener('load', function() {
   const ZOOM_SEL = '.case-post-frame img, .polaroid .photo img';
   // Desktop: swallow the press entirely so no flip starts
   document.addEventListener('mousedown', (e) => {
-    if (e.target.closest(ZOOM_SEL) || e.target.closest('#lightbox')) e.stopPropagation();
+    if (e.target.closest(ZOOM_SEL) || e.target.closest('.receipt') || e.target.closest('#lightbox')) e.stopPropagation();
   }, true);
   // Touch: allow swipes that start on a photo, but swallow taps (small movement)
   let zoomTouch = null;
@@ -4474,7 +4500,6 @@ window.addEventListener('load', function() {
     const t = e.touches[0];
     const img = e.target.closest(ZOOM_SEL);
     const inLb = e.target.closest('#lightbox');
-    if (img || inLb) zoomTouch = { x: t.clientX, y: t.clientY, img: img, inLb: !!inLb };
   }, true);
   document.addEventListener('touchend', (e) => {
     if (!zoomTouch) return;
@@ -4487,6 +4512,7 @@ window.addEventListener('load', function() {
     e.stopPropagation(); e.preventDefault();
     if (ctx.inLb) closeLightbox();
     else if (ctx.img) openLightbox(ctx.img);
+    else if (ctx.rcpt && !ctx.rcpt.classList.contains('receipt-zoom')) openReceiptZoom(ctx.rcpt);
   }, { capture: true, passive: false });
 
   /* ---- Hash deep links ---- */
